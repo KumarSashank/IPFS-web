@@ -24,18 +24,18 @@ const db = getFirestore(app);
 // Get a reference to the Firestore collection
 const filesCollection = collection(db, "files");
 
-// Function to add a file link to the Firestore collection
-export function addFileLinkToFirestore(link) {
+// Function to add a file name and link to the Firestore collection
+export function addFileToFirestore(fileName, link) {
   // Create a new document with an automatically generated ID
   const newFileDocRef = doc(filesCollection);
 
-  // Set the file link in the document
-  return setDoc(newFileDocRef, { link })
+  // Set the file name and link in the document
+  return setDoc(newFileDocRef, { fileName, link })
     .then(() => {
-      console.log("File link added to Firestore:", link);
+      console.log("File added to Firestore:", { fileName, link });
     })
     .catch((error) => {
-      console.error("Error adding file link to Firestore:", error);
+      console.error("Error adding file to Firestore:", error);
     });
 }
 
@@ -43,10 +43,12 @@ window.addEventListener("message", function (event) {
   // Check if the message contains the link property
   if (event.data && event.data.link) {
     const link = event.data.link;
+    const fileName = event.data.fileName;
     console.log("Received link:", link);
-    addFileLinkToFirestore(link);
+    console.log("Received file name:", fileName);
+    addFileToFirestore(fileName, link);
 
-    // Use the link in your Firebase module
+    // Use the link and file name in your Firebase module
     // ...
   }
 });
