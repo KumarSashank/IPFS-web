@@ -80,10 +80,11 @@ export async function getUserFilesFromFirestore(userId) {
 }
 
 // Example usage
-// getUserFilesFromFirestore(userId)
-//   .then((userFiles) => {
-//     console.log("User Files:", userFiles);
-//   })
-//   .catch((error) => {
-//     console.error("Error retrieving user files:", error);
-//   });
+getUserFilesFromFirestore(userId)
+  .then((userFiles) => {
+    console.log("User Files:", userFiles);
+    sessionStorage.setItem("userFiles", userFiles);
+  })
+  .catch((error) => {
+    console.error("Error retrieving user files:", error);
+  });

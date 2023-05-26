@@ -90,7 +90,10 @@
             // Signed in 
             const user = userCredential.user;
             const userId = user.uid;
-            const name = user.name;
+            const name = user.username;
+            console.log(user);
+
+            sessionStorage.setItem("user", user);
 
             sessionStorage.setItem("userId", userId);
             sessionStorage.setItem("username", name);
