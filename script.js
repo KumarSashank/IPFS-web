@@ -1,5 +1,5 @@
 // import { addFileLinkToFirestore } from "./firebase-module.js";
-
+import { getUserFilesFromFirestore } from "./firebase-module.js";
 console.log("Script");
 
 function showFileName(input) {
@@ -63,3 +63,12 @@ function uploadFile() {
 //   console.log(err);
 // }
 // console.log("End");
+const userId = sessionStorage.getItem("userId");
+const username = sessionStorage.getItem("username");
+getUserFilesFromFirestore(userId)
+  .then((userFiles) => {
+    console.log("User Files:", userFiles);
+  })
+  .catch((error) => {
+    console.error("Error retrieving user files:", error);
+  });

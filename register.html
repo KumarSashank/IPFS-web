@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+<link rel="stylesheet" href="login.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"> 
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+<script src="register.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+</head>
+<body>
+    <img src="logo.png" alt="logo">
+</body>
+<div class="log">
+    <div class="container">
+        <span class="title">Register</span>
+        <div class="forms">
+            <div class="form login">
+                <form action="#" id="signupform">
+                    <div class="input-field">
+                        <i class="uil uil-user"></i>
+                        <input type="text" class="name" id="username" placeholder="Enter your name" required>
+                    </div>
+                    <div class="input-field">
+                        <i class="uil uil-envelope"></i>
+                        <input type="email" class="email" id="mail" placeholder="Enter your email" required>
+                    </div>
+                    <div class="input-field">
+                        <i class="uil uil-lock"></i>
+                        <input type-="password" class="password" id="pswd1" placeholder="Password" required>
+                    </div>
+                    <div class="input-field">
+                        <i class="uil uil-lock"></i>
+                        <input type-="password" class="password" id="pswd2" placeholder="Re enter password" required>
+                    </div>
+                    <div class="input-field button">
+                        <input type="button" value="Register" cursor="pointer" id="signup" name="signup">
+                    </div>
+                    <div class="register">
+                        <span class="text">Already a member?
+                            <a href="#" class="text signup-link" onclick="login()">Login Now</a>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="firebase-module.js" type="module"></script>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+  import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-database.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+  
+    const firebaseConfig = {
+  apiKey: "AIzaSyBm7OuuxF72sVP8OpH4famDyVUywNilKaM",
+  authDomain: "ipfs-network.firebaseapp.com",
+  projectId: "ipfs-network",
+  storageBucket: "ipfs-network.appspot.com",
+  messagingSenderId: "1061871537708",
+  appId: "1:1061871537708:web:323685435e765a39cacb89",
+};
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth();
+
+signup.addEventListener('click',(e) => {
+
+var email = document.getElementById('mail').value;
+var password = document.getElementById('pswd1').value;
+var password2 = document.getElementById('pswd2').value;
+var username = document.getElementById('username').value;
+
+if(password==password2){
+    createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+   // Signed in 
+    const user = userCredential.user;
+
+    set(ref(database, 'users/' + user.uid),{
+        username: username,
+        email: email
+    })
+
+    alert('user created!');
+    window.location.href = "index.html";
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+
+    alert(errorMessage);
+  // ..
+  });
+}
+else{
+    alert('password does not match');}
+
+});
+</script>
+</script>
+
+</body>
+
+</html>
