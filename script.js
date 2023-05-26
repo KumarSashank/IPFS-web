@@ -30,6 +30,7 @@ function uploadFile() {
 
   const formData = new FormData();
   formData.append("file", file);
+  const filename = file.name;
 
   fetch(endpoint + "/api/v0/add", {
     method: "POST",
@@ -50,7 +51,7 @@ function uploadFile() {
                                  <a href="https://ipfs.io/ipfs/${hash}" target="_blank">Open IPFS Link</a>
                                </div>`;
 
-      window.postMessage({ link: piclink }, "*");
+      window.postMessage({ link: piclink, fileName: filename }, "*");
     })
     .catch((error) => console.error("Error:", error));
 }
