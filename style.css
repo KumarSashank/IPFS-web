@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,800;1,900&display=swap');
+
+body {
+      padding: 20px;
+    }
+
+    h5{
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        font-size: 1.2rem;
+    }
+.container {
+    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 10px;
+  }
+  
+  .leftside {
+    display: flex;
+    flex: 3;
+    align-items: center;
+  }
+  
+  .logo {
+    margin-right: 10px;
+  }
+  
+  .logo img {
+    height: 50px;
+  }
+  
+  .center {
+    flex-grow: 1;
+    flex: 6;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .right {
+    flex: 3;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .right button {
+    margin-left: 10px;
+    align-items: flex-end;
+  }
+  
+.center a {
+    justify-content: space-between;
+    align-items: stretch;
+  margin-right: 10px;
+  font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 1.2em;
+line-height: 48px;
+color: #1E255E;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+/* Hero section */
+.hero_section {
+    margin-top: 10vh;
+    display: flex;
+    align-items: center;
+}
+
+.left_hero{
+    flex: 1;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    margin-left: 6%;
+}
+
+h3{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-size: 2.5em;
+line-height: 50px;
+color: #1E255E;
+}
+
+h3 span{
+    color: #0061FE
+}
+
+h4{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 1.5em;
+line-height: 176.5%;
+letter-spacing: 0.05em;
+color: #404F5C;
+}
+
+h4 span{
+    color: #0070D4;
+}
+
+.right_hero{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.upload-section {
+    padding: 20px;
+  text-align: center;
+  margin-top: 20px;
+  left: calc(50% - 854px/2 - 486.5px);
+background: #F3FEFF;
+border: 1px solid #D9E0FF;
+box-shadow: inset 1px 1px 75px rgba(73, 107, 225, 0.23);
+border-radius: 9px;
+}
+
+.upload-section label {
+  display: block;
+  cursor: pointer;
+}
+
+.upload-section input[type="file"] {
+  display: none;
+}
+
+.upload-section .upload-btn {
+  display: none;
+}
+
+ 
+  .upload-section .upload-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .upload-section {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .upload-section label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .upload-section input[type="file"] {
+    display: none;
+  }
+  
+  .upload-section .upload-btn {
+    display: none;
+    background-color: lightgray;
+    color: #333;
+    cursor: not-allowed;
+  }
+  
+  .upload-section .upload-btn.active {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .upload-section .file-name {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  #result {
+    margin-top: 20px;
+  }
