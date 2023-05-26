@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Custom IPFS File Upload</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    header {
+      padding: 10px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 5px 5px 0 0;
+      margin-bottom: 20px;
+    }
+    footer {
+      padding: 10px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 0 0 5px 5px;
+      margin-top: 20px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    .hero-section {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    .hero-section .quote {
+      flex: 1;
+      padding: 30px;
+      background-color: #007bff;
+      border-radius: 5px;
+      color: #fff;
+    }
+    .hero-section .illustration {
+      flex: 1;
+      text-align: center;
+      position: relative;
+    }
+    .hero-section .illustration img {
+      max-width: 100%;
+      height: auto;
+    }
+    .hero-section .shapes {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: -1;
+    }
+    .hero-section .shapes img {
+      max-width: 100%;
+      height: auto;
+    }
+    .upload-section {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .upload-section label {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .upload-section input[type="file"] {
+      display: none;
+    }
+    .upload-section .upload-btn {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .upload-section .upload-btn:hover {
+      background-color: #0056b3;
+    }
+    #result {
+      margin-top: 20px;
+    }
+    .nav-link {
+      color: #fff;
+      margin: 0 10px;
+    }
+    .join-us-button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a class="nav-link" href="#">Home</a>
+      <a class="nav-link" href="#">Upload</a>
+      <a class="nav-link" href="#">About</a>
+      <a class="nav-link" href="#">Team</a>
+      <a class="nav-link" href="#">GitHub</a>
+      <button class="join-us-button">Join Us</button>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="hero-section">
+      <div class="quote">
+        <h2>Empowering Decentralized File Sharing</h2>
+        <p>Experience secure and efficient file sharing with the InterPlanetary File System (IPFS) powered by peer-to-peer technology.</p>
+      </div>
+      <div class="illustration">
+        <img src="illustration.png" alt="IPFS Illustration">
+        <div class="shapes">
+          <img src="shapes.png" alt="Random Shapes">
+        </div>
+      </div>
+    </div>
+
+    <div class="upload-section">
+      <label for="fileInput">Drag and drop a file or click below to upload</label>
+      <input type="file" class="form-control-file" id="fileInput">
+      <button type="button" class="upload-btn" onclick="uploadFile()">Upload</button>
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2023 Custom IPFS File Upload</p>
+  </footer>
+
+  <script>
+    function uploadFile() {
+      const projectId = "2Q6xazpc4TxCCUghubOG4QuSBdN";
+      const projectSecret = "a79ca4769fe0cc2e64dc075fe2bcace9";
+      const endpoint = "https://ipfs.infura.io:5001";
+
+      const fileInput = document.getElementById('fileInput');
+      const file = fileInput.files[0];
+
+      const formData = new FormData();
+      formData.append('file', file);
+
+      fetch(endpoint + '/api/v0/add', {
+        method: 'POST',
+        headers: {
+          Authorization: 'Basic ' + btoa(projectId + ':' + projectSecret),
+        },
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        const hash = data.Hash;
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = `<div class="alert alert-success mt-3">
+                                 <a href="https://ipfs.io/ipfs/${hash}" target="_blank">Open IPFS Link</a>
+                               </div>`;
+      })
+      .catch(error => console.error('Error:', error));
+    }
+  </script>
+</body>
+</html>

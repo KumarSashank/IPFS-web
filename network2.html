@@ -31,7 +31,7 @@
       .then(data => {
         const hash = data.Hash;
         const resultDiv = document.getElementById('result');
-        resultDiv.innerHTML = 'IPFS Hash: ' + hash;
+        resultDiv.innerHTML = `<a href="https://ipfs.io/ipfs/${hash}" target="_blank">Open IPFS Link</a>`;
       })
       .catch(error => console.error('Error:', error));
     }
