@@ -3,115 +3,73 @@
 <head>
   <title>IPFS File Upload</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
 </head>
 <body>
 
-    <div class="navbar">
-        <div class="leftside">
-          <div class="logo">
-            <img src="net_logo.png" id="logo" alt="logo">
-          </div>
-          <h5>Group-8</h5>
-        </div>
-        <div class="center">
-          <a href="index.html">Home</a>
-          <a href="network.html">About</a>
-          <a href="about.html">Team</a>
-          <a href="about.html">GitHub</a>
-        </div>
-        <div class="right">
-          <button class="btn btn-primary">Join Us</button>
-        </div>
+<div class="navbar">
+  <div class="leftside">
+    <div class="logo">
+      <img src="net_logo.png" id="logo" alt="logo">
+    </div>
+    <h5>Group-8</h5>
+  </div>
+  <div class="center">
+    <a href="index.html">Home</a>
+    <a href="network.html">About</a>
+    <a href="about.html">Team</a>
+    <a href="about.html">GitHub</a>
+  </div>
+  <div class="right">
+    <button class="btn btn-primary">Join Us</button>
+  </div>
+</div>
+
+<div class="hero_section">
+  <div class="left_hero">
+    <div class="quote">
+      <div class="quote_heading">
+        <h3>Say <span>Good Bye</span> to</h3>
+        <h3>Traditional File storage</h3>
       </div>
-
-      <div class="hero_section">
-        <div class="left_hero">
-
-            <div class="quote">
-                <div class="quote_heading">
-                    <h3>Say <span>Good Bye</span> to</h3>
-                    <h3>Traditional File storage</h3>
-                </div>
-                <div class="quote_text">
-                    <h4>Securely share files using <span>IPFS</span></h4>
-                </div>
-            </div>
-
-            <div class="upload-section">
-                <label for="fileInput">Drag and drop a file or click below to upload</label>
-                <input type="file" class="form-control-file" id="fileInput" onchange="showFileName(this)">
-                <button type="button" class="upload-btn" onclick="uploadFile()" disabled>Upload</button>
-                <div id="result"></div>
-                <div id="fileName" class="file-name"></div>
-              </div>
-        </div>
-        <div class="right_hero">
-            <img src="how-ipfs-works.png" alt="hero_img">
-        </div>
+      <div class="quote_text">
+        <h4>Securely share files using <span>IPFS</span></h4>
       </div>
+    </div>
 
+    <div class="upload-section">
+      <label for="fileInput">Drag and drop a file or click below to upload</label>
+      <input type="file" class="form-control-file" id="fileInput" onchange="showFileName(this)">
+      <button type="button" class="upload-btn" onclick="uploadFile()" disabled>Upload</button>
+      <div id="result"></div>
+      <div id="fileName" class="file-name"></div>
+    </div>
+  </div>
+  <div class="right_hero">
+    <img src="how-ipfs-works.png" alt="hero_img">
+  </div>
+</div>
 
 <div class="team-section">
-    <div class="right"></div>
-    <div class="left"></div>
+  <div class="right"></div>
+  <div class="left"></div>
 </div>
 
 
-  <script>
-    function uploadFile() {
-      const projectId = "2Q6xazpc4TxCCUghubOG4QuSBdN";
-      const projectSecret = "a79ca4769fe0cc2e64dc075fe2bcace9";
-      const endpoint = "https://ipfs.infura.io:5001";
+<script type="module" src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
+<script type="module" src="firebase-module.js"></script>
 
-      const fileInput = document.getElementById('fileInput');
-      const file = fileInput.files[0];
+  <!-- Include your other scripts -->
 
-      const formData = new FormData();
-      formData.append('file', file);
 
-      fetch(endpoint + '/api/v0/add', {
-        method: 'POST',
-        headers: {
-          Authorization: 'Basic ' + btoa(projectId + ':' + projectSecret),
-        },
-        body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-        const hash = data.Hash;
-        const resultDiv = document.getElementById('result');
-        resultDiv.innerHTML = `<div class="alert alert-success mt-3">
-                                 <a href="https://ipfs.io/ipfs/${hash}" target="_blank">Open IPFS Link</a>
-                               </div>`;
-      })
-      .catch(error => console.error('Error:', error));
-    }
-  
-    function showFileName(input) {
-  const uploadBtn = document.querySelector(".upload-btn");
-  const fileNameElement = document.getElementById("fileName");
-
-  if (input.files && input.files.length > 0) {
-    const fileName = input.files[0].name;
-    fileNameElement.textContent = fileName;
-    uploadBtn.classList.add("active");
-    uploadBtn.style.display = "inline-block";
-    uploadBtn.disabled = false;
-  } else {
-    fileNameElement.textContent = "";
-    uploadBtn.classList.remove("active");
-    uploadBtn.style.display = "none";
-    uploadBtn.disabled = true;
-  }
-}
-  </script>
-  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+<!-- <script src="https://cdn.tailwindcss.com"></script> -->
 </body>
 </html>
