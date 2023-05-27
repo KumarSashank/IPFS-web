@@ -13,45 +13,38 @@
   <script src="script.js"></script>
 </head>
 <body>
-  <div class="container">
-    <div class="navbar">
-      <!-- Navbar content -->
-      <div class="leftside">
-        <div class="logo">
-          <img src="net_logo.png" id="logo" alt="logo">
-        </div>
-        <h5>Group-8</h5>
+
+<div class="navbar">
+  <div class="leftside">
+    <div class="logo">
+      <img src="net_logo.png" id="logo" alt="logo">
+    </div>
+    <h5>Group-8</h5>
+  </div>
+  <div class="center">
+    <a href="index.html">Home</a>
+    <a href="network.html">About</a>
+    <a href="about.html">Team</a>
+    <a href="about.html">GitHub</a>
+  </div>
+  <div class="right">
+    <button class="btn btn-primary">Join Us</button>
+  </div>
+</div>
+
+<div class="hero_section">
+  <div class="left_hero">
+    <div class="quote">
+      <div class="quote_heading">
+        <h3>Say <span>Good Bye</span> to</h3>
+        <h3>Traditional File storage</h3>
       </div>
-      <div class="center">
-        <a href="index.html">Home</a>
-        <a href="network.html">About</a>
-        <a href="about.html">Team</a>
-        <a href="about.html">GitHub</a>
-      </div>
-      <div class="right">
-        <button class="btn btn-primary">Join Us</button>
+      <div class="quote_text">
+        <h4>Securely share files using <span>IPFS</span></h4>
       </div>
     </div>
-    <div class="hero_section">
-      <div class="left_hero">
-        <!-- Left hero content -->
-        <div class="quote">
-          <div class="quote_heading">
-            <h3>Say <span>Good Bye</span> to</h3>
-            <h3>Traditional File storage</h3>
-          </div>
-          <div class="quote_text">
-            <h4>Securely share files using <span>IPFS</span></h4>
-          </div>
-        </div>
-      </div>
-      <div class="right_hero">
-        <!-- Right hero content -->
-    <img src="how-ipfs-works.png" alt="hero_img">
-      </div>
-    </div>
+
     <div class="upload-section">
-      <!-- Upload section content -->
       <label for="fileInput">Drag and drop a file or click below to upload</label>
       <input type="file" class="form-control-file" id="fileInput" onchange="showFileName(this)">
       <button type="button" class="upload-btn" onclick="uploadFile()" disabled>Upload</button>
@@ -59,17 +52,15 @@
       <div id="fileName" class="file-name"></div>
     </div>
   </div>
-  
-<!-- <div class="navbar">
-
-</div> -->
-
-<div class="hero_section">
-  <!-- <div class="left_hero">
-  
-  </div> -->
   <div class="right_hero">
-    
+    <img src="how-ipfs-works.png" alt="hero_img">
+  </div>
+</div>
+
+<div class="uploads">
+  <h3 id="username">Hello </h3>
+  <h4>Your uploads are:</h4>
+  <div class="card">
   </div>
 </div>
 
@@ -82,6 +73,7 @@
 <script type="module" src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
 <script type="module" src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
 <script type="module" src="firebase-module.js"></script>
+<script type="module" src="cards.js"></script>
 
   <!-- Include your other scripts -->
 
