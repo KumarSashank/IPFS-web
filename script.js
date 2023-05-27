@@ -20,8 +20,12 @@ function showFileName(input) {
 }
 
 function uploadFile() {
-  const projectId = "2Q6xazpc4TxCCUghubOG4QuSBdN";
-  const projectSecret = "a79ca4769fe0cc2e64dc075fe2bcace9";
+//   const projectId = "2Q6xazpc4TxCCUghubOG4QuSBdN";
+//   const projectSecret = "a79ca4769fe0cc2e64dc075fe2bcace9";
+//   const endpoint = "https://ipfs.infura.io:5001";
+  
+  const projectId = "2QMSDEoTMvoqZCsVrVbwM3Mp1ti";
+  const projectSecret = "c07447f71c044e8183d30c1ee41f0c65";
   const endpoint = "https://ipfs.infura.io:5001";
 
   const fileInput = document.getElementById("fileInput");
